@@ -1,65 +1,52 @@
-import logo from "./logo.svg";
 import "./App.css";
+import SelectedCurrency from "./components/SelectedCurrency";
+import React from "react";
+import currencyData from "./currencyData";
+import Currency from "./components/Currency";
 
-function App() {
-  return (
-    <div class="grid-container">
-      <div class="selectedCurrency currency-1">
-        <button aria-label="Close" class="closeButton">
-          <span aria-hidden="true">×</span>
-        </button>
-        <label>EUR</label>
+class App extends React.Component {
+  constructor() {
+    super();
+
+    this.state = {
+      currencies: currencyData,
+    };
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick(id) {
+    this.setState((prevState) => {
+      const updatedCurrencyData = prevState.currencies.map((currency) => {
+        if (currency.id === id) {
+          currency.isSelected = !currency.isSelected;
+        }
+        console.log(currency)
+        return currency;
+      });
+      console.log(updatedCurrencyData);
+
+      return {
+        currencies: updatedCurrencyData,
+      };
+    });
+  }
+
+  render() {
+    const currencyItems = this.state.currencies.map((item) => (
+      <Currency key={item.id} item={item} handleClick={this.handleClick} />
+    ));
+
+    return (
+      <div className="outerContainer">
+        <div className="gridContainer">
+          <SelectedCurrency name={"EUR"} />
+          <SelectedCurrency name={"CZK"} />
+          <SelectedCurrency name={"RUB"} />
+        </div>
+        <div className="gridContainer">{currencyItems}</div>
       </div>
-      <div class="selectedCurrency currency-2">
-        <button aria-label="Close" class="closeButton">
-          <span aria-hidden="true">×</span>
-        </button>
-        <label>CZK</label>
-      </div>
-      <div class="selectedCurrency currency-3">
-        <button aria-label="Close" class="closeButton">
-          <span aria-hidden="true">×</span>
-        </button>
-        <label>RUB</label>
-      </div>
-      <button class="button">
-        <input type="checkbox" />
-        <label>EUR</label>
-      </button>
-      <button href="#" class="button">
-        <input type="checkbox" />
-        <label>PLN</label>
-      </button>
-      <button href="#" class="button">
-        <input type="checkbox" />
-        <label>GEL</label>
-      </button>
-      <button href="#" class="button">
-        <input type="checkbox" />
-        <label>DKK</label>
-      </button>
-      <button href="#" class="button">
-        <input type="checkbox" />
-        <label>CZK</label>
-      </button>
-      <button href="#" class="button">
-        <input type="checkbox" />
-        <label>GBP</label>
-      </button>
-      <button href="#" class="button">
-        <input type="checkbox" />
-        <label>SEK</label>
-      </button>
-      <button href="#" class="button">
-        <input type="checkbox" />
-        <label>USD</label>
-      </button>
-      <button href="#" class="button">
-        <input type="checkbox" />
-        <label>RUB</label>
-      </button>
-    </div>
-  );
+    );
+  }
 }
 
 export default App;
