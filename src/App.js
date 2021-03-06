@@ -14,16 +14,17 @@ class App extends React.Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
-  handleClick(id) {
+  handleClick(id, isSelected) {
     this.setState((prevState) => {
       const updatedCurrencyData = prevState.currencies.map((currency) => {
         if (currency.id === id) {
-          currency.isSelected = !currency.isSelected;
+          return {
+            ...currency,
+            isSelected: !isSelected,
+          };
         }
-        console.log(currency)
         return currency;
       });
-      console.log(updatedCurrencyData);
 
       return {
         currencies: updatedCurrencyData,
@@ -36,13 +37,17 @@ class App extends React.Component {
       <Currency key={item.id} item={item} handleClick={this.handleClick} />
     ));
 
+    const selected = this.state.currencies.filter(
+      (item) => item.isSelected === true
+    );
+
+    const selectedCurrencies = selected.map((item) => (
+      <SelectedCurrency key={item.id} item={item} handleClick={this.handleClick}/>
+    ));
+
     return (
       <div className="outerContainer">
-        <div className="gridContainer">
-          <SelectedCurrency name={"EUR"} />
-          <SelectedCurrency name={"CZK"} />
-          <SelectedCurrency name={"RUB"} />
-        </div>
+        <div className="gridContainer">{selectedCurrencies}</div>
         <div className="gridContainer">{currencyItems}</div>
       </div>
     );
