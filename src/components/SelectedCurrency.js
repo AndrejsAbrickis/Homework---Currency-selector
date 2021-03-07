@@ -8,7 +8,7 @@ class SelectedCurrency extends React.Component {
         onClick={() => this.props.handleClick(this.props.item.id, this.props.item.isSelected)}>
           <span aria-hidden="true">×</span>
         </button>
-        <label>{this.props.item.name}</label>
+        <label>{this.props.item.name.toLowerCase()}</label>
       </div>
     );
   }

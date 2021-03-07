@@ -47,7 +47,7 @@ class App extends React.Component {
 
     return (
       <div className="outerContainer">
-        <div className="gridContainer">{selectedCurrencies}</div>
+        <div className="gridContainerSelected">{selectedCurrencies}</div>
         <div className="gridContainer">{currencyItems}</div>
       </div>
     );

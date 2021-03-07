@@ -318,6 +318,12 @@ template {
   grid-row-gap: 0.9em;
   grid-column-gap: 0.6em; }
 
+.gridContainerSelected {
+  display: grid;
+  grid-template-columns: 32% 32% 32%;
+  padding: 1em;
+  grid-column-gap: 0.6em; }
+
 .button {
   border: 1px solid #dcdcdc;
   display: flex;
@@ -329,7 +335,8 @@ template {
   text-decoration: none;
   height: 1.7em;
   padding-left: 0.2em;
-  outline: none; }
+  outline: none;
+  position: relative; }
 
 .button:hover {
   background-color: #dbdbdb; }
@@ -337,10 +344,20 @@ template {
 .button:active {
   outline: none; }
 
+.button.selected {
+  background-color: white; }
+  .button.selected svg {
+    opacity: 100%; }
+
 .button > input {
   margin-right: 0.5em;
   width: 0.8em;
   height: 0.8em; }
+
+.button > svg {
+  position: absolute;
+  margin-left: 0.2em;
+  opacity: 0%; }
 
 .selectedCurrency {
   font-family: Arial;
@@ -352,7 +369,8 @@ template {
   font-size: 1.1em;
   height: 1.9em;
   margin-top: 0.6em;
-  margin-bottom: 0.5em; }
+  margin-bottom: 0.5em;
+  max-width: 7.4em; }
 
 .closeButton {
   display: flex;
@@ -393,5 +411,13 @@ template {
 .currency-2 {
   margin-left: 0.15em;
   margin-right: 0.15em; }
+
+.fakeCheckbox {
+  margin-right: 0.5em;
+  width: 0.8em;
+  height: 0.8em;
+  background-color: white;
+  border: 1px solid #dcdcdc;
+  border-radius: 4px; }
 
 /*# sourceMappingURL=App.css.map */

@@ -43,7 +43,8 @@ const currencyData = [
         id: 9,
         name: "RUB",
         isSelected: false
-    },
+    }
+    
 ]
 
 export default currencyData
